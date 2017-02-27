@@ -2,6 +2,7 @@
 import json
 
 import scrapy
+import getpass
 
 from qzone.items import PhotoItem
 from qzone import api
@@ -10,6 +11,14 @@ from qzone import api
 class PhotoSpider(scrapy.Spider):
     name = "photo"
     allowed_domains = ["qzone.qq.com"]
+
+    def __init__(self, *args, **kwargs):
+        if not kwargs.get('qq'):
+            self.qq = raw_input('Your QQ Number: ')
+        self.passwd = getpass.getpass('Your QQ Password: ')
+        if not kwargs.get('target'):
+            self.target = raw_input('Target QQ Number: ')
+        super(PhotoSpider, self).__init__(*args, **kwargs)
 
     def start_requests(self):
         url = api.url_msglist()

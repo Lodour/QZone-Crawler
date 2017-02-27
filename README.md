@@ -19,7 +19,7 @@
 
 6. `cd qzone`
 
-7. `scrapy crawl photo -a qq=<Your QQ> -a passwd=<Your Password> -a target=<Target QQ>`
+7. `scrapy crawl photo [-a qq=<Your QQ>] [-a target=<Target QQ>]`
 
 8. 图片保存在`QZone-Crawler/qzone/downloads`文件夹内
 
@@ -34,7 +34,7 @@
 
 * 没有对`virtualenv`的配置进行测试，如有问题请自行解决
 
-* 及时清空终端命令历史
+* ~~及时清空终端命令历史~~不指定参数时，爬虫开启后会提示输入
 
 ## License
 [MIT License](https://github.com/Lodour/QZone-Crawler/blob/master/LICENSE)
@@ -42,9 +42,12 @@
 ## Todo
 - [ ] 相册爬虫
 - [ ] 空间API应该放在单独的包里，以便于管理和更新
-- [ ] 密码不应该在参数中明文输入
+- [x] 密码不应该在参数中明文输入
 - [ ] 优化对Cookies的处理，应该自动保持而不被取消
 
 ## Update
+### 2017-2-27
+使用`getpass`进行密码输入
+
 ### 2017-2-26
 Initial commit
