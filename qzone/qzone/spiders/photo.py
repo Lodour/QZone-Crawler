@@ -53,7 +53,7 @@ class PhotoSpider(scrapy.Spider):
     def parse_photolist(self, response):
         """ 解析说说图片列表 """
         data = json.loads(response.body)
-        if 'data' in data and 'photos' in data['data']:
+        if 'data' in data and data['data'].get('photos'):
             tid = response.meta['tid']
             urls = [p['url'] for p in data['data']['photos']]
             yield PhotoItem(owner=self.target, tid=tid, image_urls=urls)
